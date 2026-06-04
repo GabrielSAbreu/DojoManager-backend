@@ -2,6 +2,10 @@ from sqlalchemy import create_engine, Column, Integer, String, DateTime, Foreign
 from sqlalchemy.orm import sessionmaker
 
 from model.base import Base
+from model.usuario import Usuario
+
+from model.pratica import Pratica
+from model.modalidade import Modalidade
 
 # Gerar o banco de dados na pasta database
 db = create_engine("sqlite:///database/dojomanager.db")
