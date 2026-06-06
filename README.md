@@ -1,9 +1,22 @@
-# DojoManager-backend
+# DojoManager - Back-end
 
-### Explicação do projeto
-Em construção
+Este repositório contém a API do **DojoManager**, um MVP de sistema web desenvolvido para a disciplina de Desenvolvimento Full Stack Básico da PUC. A aplicação resolve o problema de gestão de matrículas e controle de treinos em academias de artes marciais (Dojos), permitindo o gerenciamento de usuários (alunos/professores), modalidades e o vínculo histórico de práticas.
 
-#### Como Rodar o Projeto Localmente
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+* **Python** (Linguagem base)
+* **FastAPI** (Framework web de alta performance)
+* **SQLAlchemy** (ORM para mapeamento de dados)
+* **SQLite** (Banco de dados relacional embarcado)
+* **Pydantic** (Validação de schemas de dados)
+
+---
+
+## Como Rodar o Projeto Localmente
+
+Siga os passos abaixo para configurar e executar o servidor de desenvolvimento em sua máquina:
 
 1. Clonar o repositório:
 ```
