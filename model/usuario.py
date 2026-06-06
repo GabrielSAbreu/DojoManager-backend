@@ -19,9 +19,10 @@ class Usuario(Base):
     tipo_usuario = Column(Enum(TipoUsuario), nullable=False)
     data_nascimento = Column(Date, nullable=False)
 
-    modalidades = relationship(
+    modalidade = relationship(
         "Modalidade", secondary="pratica", back_populates="usuarios"
     )
+    praticas = relationship("Pratica", back_populates="usuario")
 
     def __init__(self, nome, email, telefone, tipo_usuario, data_nascimento):
         self.nome = nome

@@ -1,5 +1,6 @@
 from model.base import Base
 from sqlalchemy import Column, Integer, String, Date, ForeignKey
+from sqlalchemy.orm import relationship
 
 
 class Pratica(Base):
@@ -15,3 +16,6 @@ class Pratica(Base):
         primary_key=True,
     )
     data_inicio_modalidade = Column(Date, nullable=False)
+
+    usuario = relationship("Usuario", back_populates="praticas")
+    modalidade = relationship("Modalidade", back_populates="praticas")
