@@ -8,12 +8,6 @@ from routes import modalidade_router, usuario_router, pratica_router
 
 app = FastAPI()
 
-
-@app.get("/")
-def root():
-    return {"message": "Esse é o Dojo Manager API! EM CONSTRUÇÃO! OSS!"}
-
-
 app.include_router(modalidade_router)
 app.include_router(usuario_router)
 app.include_router(pratica_router)
