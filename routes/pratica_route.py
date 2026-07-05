@@ -158,6 +158,9 @@ router = APIRouter(prefix="/praticas", tags=["Práticas"])
 # 1. Vincular Aluno a uma Modalidade (POST)
 @router.post("", response_model=PraticaResponse, status_code=status.HTTP_201_CREATED)
 def criar_pratica(pratica_dados: PraticaCreate):
+    """
+    Cria um novo vínculo entre um usuário e uma modalidade.
+    """
     session = Session()
     try:
         # Validação 1: O usuário existe?
@@ -235,6 +238,9 @@ def criar_pratica(pratica_dados: PraticaCreate):
 # 2. Listar todos os vínculos (GET)
 @router.get("", response_model=List[PraticaResponse])
 def listar_praticas():
+    """
+    Lista todos os vínculos cadastrados entre usuários e modalidades.
+    """
     session = Session()
     try:
         # Adicionado o joinedload aqui também para garantir a resposta rica na listagem

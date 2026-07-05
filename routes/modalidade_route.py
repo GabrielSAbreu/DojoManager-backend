@@ -10,6 +10,11 @@ router = APIRouter(prefix="/modalidades", tags=["Modalidades"])
 # 1. Criar nova modalidade
 @router.post("", response_model=ModalidadeResponse, status_code=status.HTTP_201_CREATED)
 def criar_modalidade(modalidade_dados: ModalidadeCreate):
+    """
+    Cria nova modalidade
+
+    Necessário cadastrar a modalidade através de uma string
+    """
     session = Session()
     try:
         modalidade_existente = (
@@ -31,22 +36,22 @@ def criar_modalidade(modalidade_dados: ModalidadeCreate):
         return nova_modalidade
 
     except HTTPException as http_err:
-        # Se for um erro que nós mesmos lançamos (como o 400), repassa ele adiante
         raise http_err
     except Exception as e:
-        # Se for um erro inesperado do banco ou do sistema, captura aqui
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Erro interno ao salvar a modalidade: {str(e)}",
         )
     finally:
-        # O bloco finally executa SEMPRE (dando erro ou não), garantindo que a sessão feche
         session.close()
 
 
 # 2. Listar todas as modalidades
 @router.get("", response_model=List[ModalidadeResponse])
 def listar_modalidades():
+    """
+    Lista todas as modalidades cadastradas
+    """
     session = Session()
     try:
         modalidades = session.query(Modalidade).all()
@@ -63,6 +68,9 @@ def listar_modalidades():
 # 3. Listar modalidade por ID
 @router.get("/{id_modalidade}", response_model=ModalidadeResponse)
 def obter_modalidade(id_modalidade: int):
+    """
+    Exibe modalidade pelo ID
+    """
     session = Session()
     try:
         modalidade = (
@@ -92,6 +100,9 @@ def obter_modalidade(id_modalidade: int):
 # 4. Editar modalidade (PUT)
 @router.put("/{id_modalidade}", response_model=ModalidadeResponse)
 def editar_modalidade(id_modalidade: int, modalidade_dados: ModalidadeCreate):
+    """
+    Atualiza os dados de uma modalidade existente com base no ID informado.
+    """
     session = Session()
     try:
         modalidade = (
@@ -124,6 +135,9 @@ def editar_modalidade(id_modalidade: int, modalidade_dados: ModalidadeCreate):
 # 5. Deletar modalidade (DELETE)
 @router.delete("/{id_modalidade}", status_code=status.HTTP_200_OK)
 def deletar_modalidade(id_modalidade: int):
+    """
+    Remove uma modalidade cadastrada com base no ID informado.
+    """
     session = Session()
     try:
         modalidade = (

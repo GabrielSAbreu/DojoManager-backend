@@ -10,6 +10,9 @@ router = APIRouter(prefix="/usuarios", tags=["Usuários"])
 # 1. Criar novo usuário
 @router.post("", response_model=UsuarioResponse, status_code=status.HTTP_201_CREATED)
 def criar_usuario(usuario_dados: UsuarioCreate):
+    """
+    Cria um novo usuário no sistema.
+    """
     session = Session()
     try:
         if usuario_dados.email:
@@ -50,6 +53,9 @@ def criar_usuario(usuario_dados: UsuarioCreate):
 # 2. Listar todos os usuários
 @router.get("", response_model=List[UsuarioResponse])
 def listar_usuarios():
+    """
+    Lista todos os usuários cadastrados.
+    """
     session = Session()
     try:
         usuarios = session.query(Usuario).all()
@@ -66,6 +72,9 @@ def listar_usuarios():
 # 3. Obter usuário por ID
 @router.get("/{id_usuario}", response_model=UsuarioResponse)
 def obter_usuario(id_usuario: int):
+    """
+    Exibe os dados de um usuário pelo ID informado.
+    """
     session = Session()
     try:
         usuario = (
@@ -92,6 +101,9 @@ def obter_usuario(id_usuario: int):
 # 4. Editar usuário (PUT)
 @router.put("/{id_usuario}", response_model=UsuarioResponse)
 def editar_usuario(id_usuario: int, usuario_dados: UsuarioCreate):
+    """
+    Atualiza os dados de um usuário existente com base no ID informado.
+    """
     session = Session()
     try:
         usuario = (
@@ -127,6 +139,9 @@ def editar_usuario(id_usuario: int, usuario_dados: UsuarioCreate):
 # 5. Deletar usuário (DELETE)
 @router.delete("/{id_usuario}", status_code=status.HTTP_200_OK)
 def deletar_usuario(id_usuario: int):
+    """
+    Remove um usuário cadastrado com base no ID informado.
+    """
     session = Session()
     try:
         usuario = (
